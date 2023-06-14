@@ -11,7 +11,7 @@ I. Install requirements
 2. Clone this project to your computer
 
 ```shell
-git clone https://gitlab.com/xmars/odoo -b 16.0 --depth=1 $HOME/odoo-16-docker
+git clone https://gitlab.com/xmars/odoo-docker -b 16 --depth=1 $HOME/odoo-16-docker
 ```
 
 II. Build odoo image
