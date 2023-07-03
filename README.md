@@ -96,7 +96,7 @@ docker compose restart
 + run postgresql by docker
 
 ```shell
-docker run --name postgresql-13 -p 127.0.0.1:5432:5432  -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=postgresdb  -d --restart unless-stopped postgres:13.10
+docker run --name postgresql-15 -p 5432:5432  -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=postgresdb  -d --restart unless-stopped postgres:15
 ```
 
 + Clean docker resources
