@@ -7,11 +7,12 @@ ODOO_LOG_PATH=$(readlink -f ../logs)
 cat <<EOF > /etc/logrotate.d/odoo
 $ODOO_LOG_PATH/*.log {
         daily
+        size 10M
         rotate 10
         compress
         delaycompress
         missingok
         notifempty
-        create 640 odoo odoo
+        su 0 0
 }
 EOF
