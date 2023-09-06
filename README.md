@@ -128,6 +128,11 @@ docker rmi $(sudo docker images -f "dangling=true" -q)
 docker ps --no-trunc -a
 ```
 
+- Test logrotate works properly
+```shell
+sudo /usr/sbin/logrotate /etc/logrotate.conf -v
+```
+
 # Problems and Solutions
 
 - If you run docker compose in Windows and got problem
