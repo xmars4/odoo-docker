@@ -18,6 +18,10 @@ services:
 
     odoo16:
         image: xmars/odoo:16
+        build:
+            context: docker-files
+            dockerfile: Dockerfile
+        container_name: odoo-16
         depends_on:
             - db
         environment:
