@@ -13,6 +13,6 @@ $ODOO_LOG_PATH/*.log {
         delaycompress
         missingok
         notifempty
-        su 0 0
+        su root root
 }
 EOF
