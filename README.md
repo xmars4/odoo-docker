@@ -29,14 +29,14 @@ docker compose up -d
 
 6. DONE, your Odoo instance will running on [http://localhost:18069](http://localhost:18069)
 
-7. _(Optional)_ Setup log rotate (on host machine)
+7. _(Optionally)_ Setup log rotate (on host machine)
 
 ```shell
 cd $ODOO_DOCKER_PATH/scripts
 sudo /bin/bash setup-logrotate.sh
 ```
 
-8. _(Optional)_ If you want update modules on next restart,
+8. _(Optionally)_ If you want update modules on next restart,
 
 - Add two params to **etc/odoo.conf** file
 
@@ -81,14 +81,14 @@ docker build -f Dockerfile -t xmars/odoo:16 .
 # docker build -f Dockerfile -t xmars/odoo:16 -t xmars/odoo:16.20230312 .
 ```
 
-3. _(Optional)_ Push newly image to Docker hub
+3. _(Optionally)_ Push newly image to Docker hub
 
 ```shell
 docker login
 docker push xmars/odoo:16
 ```
 
-4. _(Optional)_ if you want to install some libs, edit **docker-files/requirements.txt** <br/> and **docker-files/entrypoint.sh** and build new image
+4. _(Optionally)_ if you want to install some libs, edit **docker-files/requirements.txt** <br/> and **docker-files/entrypoint.sh** and build new image
 
 # Tip and Tricks
 
