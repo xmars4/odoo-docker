@@ -10,7 +10,7 @@ services:
             - "15432:5432"
         volumes:
             - postgresql-data:/var/lib/postgresql/data
-            - ./etc/postgresql.conf:/etc/postgresql/postgresql.conf
+            - ./postgresql/postgresql.conf:/etc/postgresql/postgresql.conf
         command: -c 'config_file=/etc/postgresql/postgresql.conf'
         networks:
             - backend
