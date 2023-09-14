@@ -55,7 +55,7 @@ sudo /bin/bash setup-logrotate.sh
 
 -   With this option, you can run abitrary odoo commands
 
-# Build and push Odoo image to Docker hub
+# Build and push customized Odoo image to Docker hub
 
 1. Pull latest Odoo image
 
