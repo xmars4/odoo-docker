@@ -57,22 +57,10 @@ sudo /bin/bash setup-logrotate.sh
 
 # Build and push Odoo image to Docker hub
 
-1. Update latest Odoo release version in **docker-files/Dockerfile**
+1. Pull latest Odoo image
 
--   Access site [Odoo nightly](http://nightly.odoo.com/16.0/nightly/deb/)
--   Get latest version code (by release date). e.g: 12-Mar-2023 -> latest version = _20230312_
--   Get checksum file: e.g: latest version 20230312 -> checksum file name = _odoo_16.0.20230312_amd64.changes_<br/><br/>
-    <img src="img/nightly-release.png" alt="alt text" width="300" height="120">
-
--   Get checksum code sha1: e.g: checksum code = _840c008a9bc0494d3a64a124b68c6f471ce333c9_ <br/><br/>
-    <img src="img/release-checksum.png" alt="alt text" width="300" height="176">
--   Update content to docker file
-
-```dockerfile
-...
-ARG ODOO_RELEASE=<latest version>
-ARG ODOO_SHA=<checksum code>
-...
+```shell
+docker pull odoo:16
 ```
 
 2. Run build command
@@ -91,7 +79,7 @@ docker login
 docker push xmars/odoo:16
 ```
 
-4. _(Optionally)_ if you want to install some libs, edit **docker-files/requirements.txt** <br/> and **docker-files/entrypoint.sh** and build new image
+4. _(Optionally)_ if you want to install some libs, edit **[docker-files/requirements.txt]([docker-files/requirements.txt])** <br/> and **[docker-files/entrypoint.sh](docker-files/entrypoint.sh)** and build new image
 
 # Tip and Tricks
 
