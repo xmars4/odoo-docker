@@ -28,52 +28,15 @@ check_config "db_port" "$PORT"
 check_config "db_user" "$USER"
 check_config "db_password" "$PASSWORD"
 
-
-UPDATE_MODULES_PARAM=update_addons
-UPDATE_MODULES=
-function get_update_modules() {
-    if grep -q -E "^\s*\b${UPDATE_MODULES_PARAM}\b\s*=" "$ODOO_RC" ; then
-        UPDATE_MODULES=$(grep -E "^\s*\b${UPDATE_MODULES_PARAM}\b\s*=" "$ODOO_RC" |cut -d " " -f3|sed 's/["\n\r]//g')
+# get 'command' from config file
+COMMAND_PARAM_NAME="command"
+COMMAND=
+function get_additional_command() {
+    if grep -q -E "^\s*\b${COMMAND_PARAM_NAME}\b\s*=" "$ODOO_RC" ; then
+        COMMAND=$(grep -E "^\s*\b${COMMAND_PARAM_NAME}\b\s*=" "$ODOO_RC" | cut -d "=" -f2 | sed 's/[\n\r]//g')
     fi;
 }
-get_update_modules
-
-INSTALL_MODULES_PARAM=install_addons
-INSTALL_MODULES=
-function get_install_modules() {
-    if grep -q -E "^\s*\b${INSTALL_MODULES_PARAM}\b\s*=" "$ODOO_RC" ; then
-        INSTALL_MODULES=$(grep -E "^\s*\b${INSTALL_MODULES_PARAM}\b\s*=" "$ODOO_RC" |cut -d " " -f3|sed 's/["\n\r]//g')
-    fi;
-}
-get_install_modules
-
-
-DB_NAME_PARAM=db_name
-DB_NAME=
-function get_db_name() {
-    if grep -q -E "^\s*\b${DB_NAME_PARAM}\b\s*=" "$ODOO_RC" ; then
-        DB_NAME=$(grep -E "^\s*\b${DB_NAME_PARAM}\b\s*=" "$ODOO_RC" |cut -d " " -f3|sed 's/["\n\r]//g')
-    fi;
-}
-get_db_name
-
-
-# "$@" meaning pass all arguments from previous command to current command
-function run_odoo() {
-    wait-for-psql.py "${DB_ARGS[@]}" --timeout=30
-    if [[ -n $DB_NAME ]] ; then
-        if [[ -n $INSTALL_MODULES ]] ; then
-            exec odoo "$@" "${DB_ARGS[@]}" -d "$DB_NAME" -i "$INSTALL_MODULES"
-        elif [[ -n $UPDATE_MODULES ]] ; then
-            exec odoo "$@" "${DB_ARGS[@]}" -d "$DB_NAME" -u "$UPDATE_MODULES"
-        else
-            exec odoo "$@" "${DB_ARGS[@]}" -d "$DB_NAME"
-        fi
-    else
-        exec odoo "$@"
-    fi
-}
-
+get_additional_command
 
 case "$1" in
     -- | odoo)
@@ -81,11 +44,13 @@ case "$1" in
         if [[ "$1" == "scaffold" ]] ; then
             exec odoo "$@"
         else
-            run_odoo "$@" "${DB_ARGS[@]}"
+            wait-for-psql.py ${DB_ARGS[@]} --timeout=30
+            exec odoo "$@" "${DB_ARGS[@]}" $COMMAND
         fi
         ;;
     -*)
-        run_odoo "$@" "${DB_ARGS[@]}"
+        wait-for-psql.py ${DB_ARGS[@]} --timeout=30
+        exec odoo "$@" "${DB_ARGS[@]}" $COMMAND
         ;;
     *)
         exec "$@"

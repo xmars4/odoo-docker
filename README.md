@@ -2,8 +2,8 @@
 
 Install docker and docker compose
 
-- [Docker](https://docs.docker.com/engine/install/)
-- [Docker compose plugin](https://docs.docker.com/compose/install/linux/)
+-   [Docker](https://docs.docker.com/engine/install/)
+-   [Docker compose plugin](https://docs.docker.com/compose/install/linux/)
 
 # Running Odoo
 
@@ -36,34 +36,37 @@ cd $ODOO_DOCKER_PATH/scripts
 sudo /bin/bash setup-logrotate.sh
 ```
 
-8. _(Optionally)_ If you want update modules on next restart,
+8. _(Optionally)_ If you want add extra command when run odoo
 
-- Add two params to **etc/odoo.conf** file
+-   for instance:
 
-```
-...
-db_name = <db name>
-update_addons = <list addons to update, separate by comma>
-```
+    -   Add **_command_** param to [etc/odoo.conf](etc/odoo.conf) file
 
-- Restart services
+        ```
+        ...
+        command = -i stock -u sale_management
+        ```
 
-```shell
-docker compose restart
-```
+    -   Restart services
+
+        ```shell
+        docker compose restart
+        ```
+
+-   With this option, you can run abitrary odoo commands
 
 # Build and push Odoo image to Docker hub
 
 1. Update latest Odoo release version in **docker-files/Dockerfile**
 
-- Access site [Odoo nightly](http://nightly.odoo.com/16.0/nightly/deb/)
-- Get latest version code (by release date). e.g: 12-Mar-2023 -> latest version = _20230312_
-- Get checksum file: e.g: latest version 20230312 -> checksum file name = _odoo_16.0.20230312_amd64.changes_<br/><br/>
-  <img src="img/nightly-release.png" alt="alt text" width="300" height="120">
+-   Access site [Odoo nightly](http://nightly.odoo.com/16.0/nightly/deb/)
+-   Get latest version code (by release date). e.g: 12-Mar-2023 -> latest version = _20230312_
+-   Get checksum file: e.g: latest version 20230312 -> checksum file name = _odoo_16.0.20230312_amd64.changes_<br/><br/>
+    <img src="img/nightly-release.png" alt="alt text" width="300" height="120">
 
-- Get checksum code sha1: e.g: checksum code = _840c008a9bc0494d3a64a124b68c6f471ce333c9_ <br/><br/>
-  <img src="img/release-checksum.png" alt="alt text" width="300" height="176">
-- Update content to docker file
+-   Get checksum code sha1: e.g: checksum code = _840c008a9bc0494d3a64a124b68c6f471ce333c9_ <br/><br/>
+    <img src="img/release-checksum.png" alt="alt text" width="300" height="176">
+-   Update content to docker file
 
 ```dockerfile
 ...
@@ -92,24 +95,24 @@ docker push xmars/odoo:16
 
 # Tip and Tricks
 
-- [generate records for testing](https://www.odoo.com/documentation/16.0/developer/reference/cli.html#database-population)
+-   [generate records for testing](https://www.odoo.com/documentation/16.0/developer/reference/cli.html#database-population)
 
 ```shell
   docker exec <odoo_container_name_or_id> odoo populate --models res.partner,product.product --size medium -c /etc/odoo/odoo.conf
 ```
 
-- run postgresql by docker
+-   run postgresql by docker
 
 ```shell
 docker run --name postgresql-15 -p 5432:5432 \
  -e POSTGRES_USER=admin \
  -e POSTGRES_PASSWORD=admin \
- -e POSTGRES_DB=postgresdb \  
+ -e POSTGRES_DB=postgresdb \
  -d --restart unless-stopped \
  postgres:15
 ```
 
-- Clean docker resources
+-   Clean docker resources
 
 ```shell
 # Prune every unused docker objects
@@ -128,20 +131,21 @@ docker rmi $(sudo docker images -f "dangling=true" -q)
 docker ps --no-trunc -a
 ```
 
-- Test logrotate works properly
+-   Test logrotate works properly
+
 ```shell
 sudo /usr/sbin/logrotate /etc/logrotate.conf -v
 ```
 
 # Problems and Solutions
 
-- If you run docker compose in Windows and got problem
+-   If you run docker compose in Windows and got problem
 
 ```shell
 entrypoint.sh file not found
 ```
 
-- open file this project in [VSCode](https://code.visualstudio.com/download)
-  or [Pycharm](https://www.jetbrains.com/pycharm/download/)
-- make sure encoding option and line separator is correct <br/>
-  <img src="img/encoding-problem.png" alt="alt text" width="400" height="176">
+-   open file this project in [VSCode](https://code.visualstudio.com/download)
+    or [Pycharm](https://www.jetbrains.com/pycharm/download/)
+-   make sure encoding option and line separator is correct <br/>
+    <img src="img/encoding-problem.png" alt="alt text" width="400" height="176">
