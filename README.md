@@ -10,21 +10,22 @@ Install docker and docker compose
 1. Clone this project to your computer
 
 ```shell
-ODOO_DOCKER_PATH=$HOME/odoo-docker
-git clone https://gitlab.com/xmars/odoo-docker -b 16 --depth=1 $ODOO_DOCKER_PATH
+$ ODOO_DOCKER_PATH=$HOME/odoo-docker
+$ git clone https://gitlab.com/xmars/odoo-docker -b 16 --depth=1 $ODOO_DOCKER_PATH
 ```
 
 2. Copy custom addons to folder **extra-addons**
 
 3. Copy enterprise addons to folder **et-addons**
 
-4. Edit file config in **etc/odoo.conf** if you want to add some configuration
+4. Edit confile file [etc/odoo.conf](etc/odoo.conf) if you want to add or update some configurations
 
 5. Running Odoo
 
 ```shell
-cd $ODOO_DOCKER_PATH
-docker compose up -d
+$ cd $ODOO_DOCKER_PATH
+$ docker compose build --pull
+$ docker compose up -d
 ```
 
 6. DONE, your Odoo instance will running on [http://localhost:18069](http://localhost:18069)
@@ -32,8 +33,8 @@ docker compose up -d
 7. _(Optionally)_ Setup log rotate (on host machine)
 
 ```shell
-cd $ODOO_DOCKER_PATH/scripts
-sudo /bin/bash setup-logrotate.sh
+$ cd $ODOO_DOCKER_PATH/scripts
+$ sudo /bin/bash setup-logrotate.sh
 ```
 
 8. _(Optionally)_ If you want add extra command when run odoo
@@ -42,7 +43,7 @@ sudo /bin/bash setup-logrotate.sh
 
     -   Add **_command_** param to [etc/odoo.conf](etc/odoo.conf) file
 
-        ```
+        ```confile
         ...
         command = -i stock -u sale_management
         ```
@@ -50,38 +51,36 @@ sudo /bin/bash setup-logrotate.sh
     -   Restart services
 
         ```shell
-        docker compose restart
+        $ docker compose restart
         ```
 
 -   With this option, you can run abitrary odoo commands
 
-# Build and push customized Odoo image to Docker hub
+## How to build and publish customized Odoo image on Docker hub
 
 1. Pull latest Odoo image
 
 ```shell
-docker pull odoo:16
+$ docker pull odoo:16
 ```
 
 2. Run build command
 
 ```shell
-cd $HOME/odoo-16-docker/docker-files
-docker build -f Dockerfile -t xmars/odoo:16 .
-# add multiple tag to image. e.g:
-# docker build -f Dockerfile -t xmars/odoo:16 -t xmars/odoo:16.20230312 .
+$ cd $ODOO_DOCKER_PATH/dockerfile
+$ docker build -f Dockerfile --pull -t xmars/odoo:16 .
 ```
 
 3. _(Optionally)_ Push newly image to Docker hub
 
 ```shell
-docker login
-docker push xmars/odoo:16
+$ docker login
+$ docker push xmars/odoo:16
 ```
 
-4. _(Optionally)_ if you want to install some libs, edit **[docker-files/requirements.txt]([docker-files/requirements.txt])** <br/> and **[docker-files/entrypoint.sh](docker-files/entrypoint.sh)** and build new image
+4. _(Optionally)_ if you want to install some libs, edit **[dockerfile/requirements.txt]([dockerfile/requirements.txt])** <br/> and **[dockerfile/entrypoint.sh](dockerfile/entrypoint.sh)** and rebuild the image
 
-# Tip and Tricks
+## Tip and Tricks
 
 -   [generate records for testing](https://www.odoo.com/documentation/16.0/developer/reference/cli.html#database-population)
 
@@ -129,11 +128,13 @@ sudo /usr/sbin/logrotate /etc/logrotate.conf -v
 
 -   If you run docker compose in Windows and got problem
 
-```shell
-entrypoint.sh file not found
-```
+    ```shell
+    entrypoint.sh file not found
+    ```
 
--   open file this project in [VSCode](https://code.visualstudio.com/download)
-    or [Pycharm](https://www.jetbrains.com/pycharm/download/)
--   make sure encoding option and line separator is correct <br/>
-    <img src="img/encoding-problem.png" alt="alt text" width="400" height="176">
+    Solution:
+
+    -   open file this project in [VSCode](https://code.visualstudio.com/download)
+        or [Pycharm](https://www.jetbrains.com/pycharm/download/)
+    -   make sure encoding option and line separator is correct <br/><br/>
+        <img src="img/encoding-problem.png" alt="alt text" width="400" height="176">

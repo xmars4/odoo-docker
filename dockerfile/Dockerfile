@@ -1,6 +1,6 @@
 FROM odoo:16
 
-# USE root user to handle logging easier
+# Use root user to handle logging easier
 USER root
 
 COPY ./entrypoint.sh /

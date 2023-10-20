@@ -51,4 +51,3 @@ package.json
 # ide and editor
 .idea
 .vscode
-logs/*
