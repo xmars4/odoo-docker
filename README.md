@@ -14,10 +14,10 @@ Install docker and docker compose
 
 1. Clone this project to your computer
 
-```shell
-ODOO_DOCKER_PATH=$HOME/odoo-docker
-git clone https://gitlab.com/xmars/odoo-docker -b 16 --depth=1 $ODOO_DOCKER_PATH
-```
+    ```shell
+    ODOO_DOCKER_PATH=$HOME/odoo-docker
+    git clone https://gitlab.com/xmars/odoo-docker -b 16 --depth=1 $ODOO_DOCKER_PATH
+    ```
 
 2. Copy custom addons to folder **extra-addons**
 
@@ -27,23 +27,24 @@ git clone https://gitlab.com/xmars/odoo-docker -b 16 --depth=1 $ODOO_DOCKER_PATH
 
 5. Running Odoo
 
-```shell
-cd $ODOO_DOCKER_PATH
-docker compose build --pull
-docker compose up -d
-```
+    ```shell
+    cd $ODOO_DOCKER_PATH
+    docker compose build --pull
+    docker compose up -d
+    ```
 
 6. DONE, your Odoo instance will running on [http://localhost:18069](http://localhost:18069)
 
 7. _(Optionally)_ Setup log rotate (on host machine)
 
-```shell
-cd $ODOO_DOCKER_PATH/scripts
-sudo /bin/bash setup-logrotate.sh
-```
+    ```shell
+    cd $ODOO_DOCKER_PATH/scripts
+    sudo /bin/bash setup-logrotate.sh
+    ```
 
 8. _(Optionally)_ If you want add extra command when run odoo
 
+- With this option, you can run abitrary odoo commands
 - for instance:
 
     - Add **_command_** param to [etc/odoo.conf](etc/odoo.conf) file
@@ -59,29 +60,27 @@ sudo /bin/bash setup-logrotate.sh
         docker compose restart
         ```
 
-- With this option, you can run abitrary odoo commands
-
 ## How to build and publish customized Odoo image on Docker hub
 
 1. Pull latest Odoo image
 
-```shell
-docker pull odoo:16
-```
+    ```shell
+    docker pull odoo:16
+    ```
 
 2. Run build command
 
-```shell
-cd $ODOO_DOCKER_PATH/dockerfile
-docker build -f Dockerfile --pull -t xmars/odoo:16 .
-```
+    ```shell
+    cd $ODOO_DOCKER_PATH/dockerfile
+    docker build -f Dockerfile --pull -t xmars/odoo:16 .
+    ```
 
 3. _(Optionally)_ Push newly image to Docker hub
 
-```shell
-docker login
-docker push xmars/odoo:16
-```
+    ```shell
+    docker login
+    docker push xmars/odoo:16
+    ```
 
 4. _(Optionally)_ if you want to install some libs, edit [dockerfile/requirements.txt](dockerfile/requirements.txt) and [dockerfile/entrypoint.sh](dockerfile/entrypoint.sh) and rebuild the image
 
@@ -129,7 +128,7 @@ docker ps --no-trunc -a
 sudo /usr/sbin/logrotate /etc/logrotate.conf -v
 ```
 
-# Problems and Solutions
+## Problems and Solutions
 
 - If you run docker compose in Windows and got problem
 
@@ -137,9 +136,11 @@ sudo /usr/sbin/logrotate /etc/logrotate.conf -v
     entrypoint.sh file not found
     ```
 
-    Solution:
+- Solution:
 
     - open file this project in [VSCode](https://code.visualstudio.com/download)
         or [Pycharm](https://www.jetbrains.com/pycharm/download/)
-    - make sure encoding option and line separator is correct <br/><br/>
-        <img src="img/encoding-problem.png" alt="alt text" width="400" height="176">
+
+    - make sure encoding option and line separator is correct
+
+        ![alt](img/encoding-problem.png)
