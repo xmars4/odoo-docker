@@ -11,6 +11,6 @@ RUN pip3 install -r /etc/odoo/requirements.txt
 
 RUN mkdir -p /mnt/et-addons \
     && chown -R odoo /mnt/et-addons \
-    && chown odoo /etc/odoo/odoo.conf
+    && chown odoo /etc/odoo/odoo.conf 
 
 VOLUME ["/mnt/et-addons"]
