@@ -83,7 +83,7 @@ docker login
 docker push xmars/odoo:16
 ```
 
-4. _(Optionally)_ if you want to install some libs, edit **[dockerfile/requirements.txt]([dockerfile/requirements.txt])** <br/> and **[dockerfile/entrypoint.sh](dockerfile/entrypoint.sh)** and rebuild the image
+4. _(Optionally)_ if you want to install some libs, edit [dockerfile/requirements.txt](dockerfile/requirements.txt) and [dockerfile/entrypoint.sh](dockerfile/entrypoint.sh) and rebuild the image
 
 ## Tip and Tricks
 
