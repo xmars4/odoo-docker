@@ -19,7 +19,7 @@ Install docker and docker compose
     git clone https://github.com/xmars4/odoo-docker -b 16 --depth=1 $ODOO_DOCKER_PATH
     ```
 
-2. Copy custom addons to folder **extra-addons**
+2. Copy custom addons to folder **custom-addons**
 
 3. Copy enterprise addons to folder **et-addons**
 
