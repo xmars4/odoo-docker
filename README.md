@@ -132,7 +132,7 @@ sudo /usr/sbin/logrotate /etc/logrotate.conf -v
 
 - Run multiple docker compose with the same config in the same folder name, the new one will override the others,
 
-    \*\* Solution
+    \*\* Solution:
 
     [Specify a project name](https://docs.docker.com/engine/reference/commandline/compose/#use--p-to-specify-a-project-name) for each docker compose file to diffentiate them
 
