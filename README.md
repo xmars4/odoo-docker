@@ -1,4 +1,4 @@
-# Odoo installation using Docker compose
+# Odoo's installation using Docker compose
 
 ## Prerequisite and Installation
 
@@ -30,10 +30,10 @@ Install docker and docker compose
     ```shell
     cd $ODOO_DOCKER_PATH
     docker compose build --pull
-    docker compose up -d
+    docker compose -p dev up -d 
     ```
 
-6. DONE, your Odoo instance will running on [http://localhost:18069](http://localhost:18069)
+6. DONE, your Odoo instance will run on [http://localhost:18069](http://localhost:18069)
 
 7. _(Optionally)_ Setup log rotate (on host machine)
 
@@ -42,9 +42,9 @@ Install docker and docker compose
     sudo /bin/bash setup-logrotate.sh
     ```
 
-8. _(Optionally)_ If you want add extra command when run odoo
+8. _(Optionally)_ If you want to add extra command when run odoo
 
-- With this option, you can run abitrary odoo commands
+- With this option, you can run arbitrary odoo commands
 - for instance:
 
     - Add **_command_** param to [etc/odoo.conf](etc/odoo.conf) file

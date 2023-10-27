@@ -21,7 +21,6 @@ services:
         build:
             context: dockerfile
             dockerfile: Dockerfile
-        container_name: odoo-16
         depends_on:
             - db
         environment:
