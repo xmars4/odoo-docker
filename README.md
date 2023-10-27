@@ -130,13 +130,23 @@ sudo /usr/sbin/logrotate /etc/logrotate.conf -v
 
 ## Problems and Solutions
 
+- Run multiple docker compose with the same config in the same folder name, the new one will override the others,
+
+    \*\* Solution
+
+    Add **-p \<project-name\>** option to docker compose run to diffentiate them
+
+    ```shell
+        docker compose -p <project-name> up -d
+    ```
+
 - If you run docker compose in Windows and got problem
 
     ```shell
     entrypoint.sh file not found
     ```
 
-- Solution:
+    \*\* Solution:
 
     - open file this project in [VSCode](https://code.visualstudio.com/download)
         or [Pycharm](https://www.jetbrains.com/pycharm/download/)
