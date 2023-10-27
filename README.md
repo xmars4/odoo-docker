@@ -30,7 +30,7 @@ Install docker and docker compose
     ```shell
     cd $ODOO_DOCKER_PATH
     docker compose build --pull
-    docker compose -p dev up -d 
+    docker compose up -d 
     ```
 
 6. DONE, your Odoo instance will run on [http://localhost:18069](http://localhost:18069)
@@ -134,11 +134,7 @@ sudo /usr/sbin/logrotate /etc/logrotate.conf -v
 
     \*\* Solution
 
-    Add **-p \<project-name\>** option to docker compose run to diffentiate them
-
-    ```shell
-        docker compose -p <project-name> up -d
-    ```
+    [Specify a project name](https://docs.docker.com/engine/reference/commandline/compose/#use--p-to-specify-a-project-name) for each docker compose file to diffentiate them
 
 - If you run docker compose in Windows and got problem
 
