@@ -47,7 +47,7 @@ you can reference to the [sample file](etc/odoo.conf.sample)
 - With this option, you can run arbitrary odoo commands
 - for instance:
 
-    - Add **_command_** param to [etc/odoo.conf](etc/odoo.conf) file
+    - Add **_command_** param to **etc/odoo.conf** file
 
         ```confile
         ...
