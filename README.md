@@ -23,8 +23,8 @@ Install docker and docker compose
 
 3. Copy enterprise addons to folder **et-addons**
 
-4. Edit confile file [etc/odoo.conf](etc/odoo.conf) if you want to add or update some configurations
-
+4. Create a confile file named **odoo.conf** in folder **[etc/](etc/)**\
+you can reference to the [sample file](etc/odoo.conf.sample)
 5. Running Odoo
 
     ```shell
