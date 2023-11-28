@@ -1,4 +1,4 @@
-FROM odoo:16
+FROM odoo:15
 
 # Use root user to handle logging easier
 USER root
