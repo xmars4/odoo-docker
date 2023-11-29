@@ -106,6 +106,7 @@ jobs:
                   password: ${{ env.DOCKERHUB_TOKEN }}
             - name: Build & Publish image
               run: |
+                  cd ${{ env.ET_WORKSPACE_PATH }}
                   docker build -t ${{ env.DOCKERHUB_USERNAME }}/odoo-et:17 .
                   docker push ${{ env.DOCKERHUB_USERNAME }}/odoo-et:17
 
@@ -132,6 +133,7 @@ jobs:
                   password: ${{ env.DOCKERHUB_TOKEN }}
             - name: Build & Publish image
               run: |
+                  cd ${{ env.ET_WORKSPACE_PATH }}
                   docker build -t ${{ env.DOCKERHUB_USERNAME }}/odoo-et:16 .
                   docker push ${{ env.DOCKERHUB_USERNAME }}/odoo-et:16
 
@@ -158,5 +160,6 @@ jobs:
                   password: ${{ env.DOCKERHUB_TOKEN }}
             - name: Build & Publish image
               run: |
+                  cd ${{ env.ET_WORKSPACE_PATH }}
                   docker build -t ${{ env.DOCKERHUB_USERNAME }}/odoo-et:15 .
                   docker push ${{ env.DOCKERHUB_USERNAME }}/odoo-et:15
