@@ -19,14 +19,14 @@ Install docker and docker compose
 
     ```shell
     cd $ODOO_DOCKER_PATH/dockerfile
-    docker build -f Dockerfile --pull -t xmars/odoo-et:16 .
+    docker build -f Dockerfile --pull -t xmars/odoo:16 .
     ```
 
 2. _(Optionally)_ Push newly image to Docker hub
 
     ```shell
     docker login
-    docker push xmars/odoo-et:16
+    docker push xmars/odoo:16
     ```
 
 3. _(Optionally)_ if you want to install some libs, edit file [requirements.txt](requirements.txt) and [entrypoint.sh](entrypoint.sh) and rebuild the image
