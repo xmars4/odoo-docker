@@ -1,5 +1,8 @@
 # Odoo community Docker images
 
+- Odoo version: 16
+- Postgres version: 16
+
 ## Prerequisite and Installation
 
 Install docker and docker compose
