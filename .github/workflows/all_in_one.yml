@@ -16,6 +16,8 @@ env:
 
 jobs:
     build-odoo-community-image-17:
+        permissions:
+            contents: write
         uses: ./.github/workflows/build.yml
         with:
             ref: "17"
