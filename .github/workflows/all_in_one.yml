@@ -16,11 +16,17 @@ env:
 
 jobs:
     build-odoo-community-image-17:
-        uses: ./.github/workflows/prepare.yml
-        with:
-            ref: 17
-            image_tag: odoo
-        secrets: inherit
+        steps:
+            - uses: ./.github/workflows/prepare.yml
+              with:
+                  ref: 17
+                  image_tag: odoo
+                  secrets: inherit
+
+            - uses: ./.github/workflows/prepare.yml
+              with:
+                  ref: 17
+                  image_tag: odoo
 # jobs:
 #     build-odoo-community-image-17:
 #         runs-on: ubuntu-latest

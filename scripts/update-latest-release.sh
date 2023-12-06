@@ -1,8 +1,5 @@
 #!/bin/bash
 
-odoo_version_code=$1
-docker_file_path=$2
-
 function get_latest_release_info {
     file_name="odoo_${odoo_version_code}.latest_amd64.changes"
     url="https://nightly.odoo.com/${odoo_version_code}/nightly/deb/${file_name}"
@@ -23,3 +20,12 @@ function update_latest_release_to_dockerfile {
     sed -i "s/^\s*ARG ODOO_RELEASE\s*.*/ARG ODOO_RELEASE=${release_date}/g" $docker_file_path
     sed -i "s/^\s*ARG ODOO_SHA\s*.*/ARG ODOO_SHA=${release_checksum}/g" $docker_file_path
 }
+
+function main {
+    odoo_version_code=$1
+    docker_file_path=$2
+    get_latest_release_info
+    update_latest_release_to_dockerfile
+}
+
+main "$@"
