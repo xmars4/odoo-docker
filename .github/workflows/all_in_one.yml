@@ -3,6 +3,7 @@ name: build
 on:
     push:
         branches: ["build"]
+# fixme: backto schedule
 # on:
 #     schedule:
 #         - cron: "0 23 * * *"
