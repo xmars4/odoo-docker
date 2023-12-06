@@ -3,10 +3,7 @@ name: Get and commit latest Odoo release # reusable workflow
 on:
     workflow_call:
         inputs:
-            ref:
-                required: true
-                type: string
-            image_tag:
+            version_code:
                 required: true
                 type: string
 
@@ -16,4 +13,4 @@ jobs:
         steps:
             - name: Get release bash from nightly server
               run: |
-                  echo fetch me
+                  bash ${{ github.workspace }}/scripts/update-latest-release.sh "${{ inputs.version_code }}" "${{ github.workspace }}/Dockerfile"

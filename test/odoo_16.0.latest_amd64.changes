@@ -1,0 +1,33 @@
+Format: 1.8
+Date: Tue, 15 Dec 2020 10:28:49 +0100
+Source: odoo
+Binary: odoo
+Architecture: source all
+Version: 16.0.20231206
+Distribution: stable
+Urgency: low
+Maintainer: Odoo S.A. <info@odoo.com>
+Changed-By: Sebastien Delafond <seb@debian.org>
+Description:
+ odoo       - Open Source Apps To Grow Your Business
+Closes: 973603 973605
+Changes:
+ odoo (16.0.20231206) stable; urgency=low
+ .
+   * Add missing sources, remove sourceless parts, and add lintian
+     overrides where needed (Closes: #973603, #973605)
+Checksums-Sha1:
+ c96de23dba497a8c886769841132d2fc21c0fec1 752 odoo_16.0.20231206.dsc
+ 9b0f6bb0fcade8560010c74bacea5ce53054e104 201643028 odoo_16.0.20231206.tar.xz
+ 65c210abb9ce6125603a64c933f6f832a64659ab 203161532 odoo_16.0.20231206_all.deb
+ fa1e2e16d0758bda582f15deb4a0d95acfe57a79 5601 odoo_16.0.20231206_amd64.buildinfo
+Checksums-Sha256:
+ 95b4ef07f94c18b9aea497b854a97f069550bac6e9337c6f43268281b66635bc 752 odoo_16.0.20231206.dsc
+ 4098ffd554058735b302f761d71aabd169b97721b1cc98ebaf32316f33351f82 201643028 odoo_16.0.20231206.tar.xz
+ 6bb67b1193c9532e25edb55f8cb1cf347ccb050a431481fc8b3b00976ffdda57 203161532 odoo_16.0.20231206_all.deb
+ f69259ac7dc191567cd49ce19e38378d3af93665a14e2834e80d2eee2e2d888d 5601 odoo_16.0.20231206_amd64.buildinfo
+Files:
+ 5724a634edc0605e3be0d3fdf1adb90a 752 net optional odoo_16.0.20231206.dsc
+ 745e3773692b64a1896ba8aef5ccd192 201643028 net optional odoo_16.0.20231206.tar.xz
+ 31398c8c7fb937f56405e80463e4d138 203161532 net optional odoo_16.0.20231206_all.deb
+ 052ea508a1341b5eec372b25b0c4cf6d 5601 net optional odoo_16.0.20231206_amd64.buildinfo
