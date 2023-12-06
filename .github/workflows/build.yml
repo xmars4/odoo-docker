@@ -44,6 +44,7 @@ jobs:
 
                       declare -g release_checksum=${words[0]}
                       declare -g release_date=$(echo ${words[2]} | grep -o "[0-9]\{8\}")
+                      rm -rf $file_name
                   }
 
                   function update_latest_release_to_dockerfile {
