@@ -30,6 +30,7 @@ jobs:
 
             - name: Get release bash from nightly server
               run: |
+                  ls -lah ${{ github.workspace }}
                   bash ${{ github.workspace }}/scripts/update-latest-release.sh "${{ inputs.version_code }}" "${{ github.workspace }}/Dockerfile"
 
             - uses: stefanzweifel/git-auto-commit-action@v5
