@@ -21,11 +21,7 @@ function update_latest_release_to_dockerfile {
     sed -i "s/^\s*ARG ODOO_SHA\s*.*/ARG ODOO_SHA=${release_checksum}/g" $docker_file_path
 }
 
-function main {
-    odoo_version_code=$1
-    docker_file_path=$2
-    get_latest_release_info
-    update_latest_release_to_dockerfile
-}
-
-main "$@"
+odoo_version_code=$1
+docker_file_path=$2
+get_latest_release_info
+update_latest_release_to_dockerfile
