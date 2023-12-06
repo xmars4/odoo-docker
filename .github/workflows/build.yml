@@ -2,12 +2,11 @@ name: build
 
 on:
     schedule:
-        - cron: "*/5 * * * *"
+        - cron: "0 23 * * *"
 
 env:
     DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
     DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-    COMMENT_BODY: ${{ github.event.comment.body }}
     ET_REPO_PATH: ${{secrets.ET_REPO_PATH}}
     ET_REPO_TOKEN: ${{secrets.ET_REPO_TOKEN}}
     ET_WORKSPACE_PATH: ${{ github.workspace }}/et-source
