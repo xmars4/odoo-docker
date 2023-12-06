@@ -3,6 +3,8 @@ name: build
 on:
     issue_comment:
         types: [created]
+    schedule:
+    - cron:  '55 7 * * *'
 
 env:
     DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
