@@ -4,7 +4,7 @@ on:
     issue_comment:
         types: [created]
     schedule:
-    - cron:  '55 7 * * *'
+    - cron:  '* * * * *'
 
 env:
     DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
