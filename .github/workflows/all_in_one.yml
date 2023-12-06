@@ -45,7 +45,7 @@ jobs:
             image_tag: "odoo:15"
             version_code: "15.0"
         secrets: inherit
-#fixme: update build odoo et - create a new workflow file
+#fixme: update build odoo et - create a new workflow file.
 #     build-odoo-et-image-17:
 #         runs-on: ubuntu-latest
 #         steps:
