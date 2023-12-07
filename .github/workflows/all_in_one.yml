@@ -45,81 +45,30 @@ jobs:
             image_tag: "odoo:15"
             version_code: "15.0"
         secrets: inherit
-#fixme: update build odoo et - create a new workflow file.
-#     build-odoo-et-image-17:
-#         runs-on: ubuntu-latest
-#         steps:
-#             - name: Checkout
-#               uses: actions/checkout@v4
 
-#             - name: Checkout Enterprise source
-#               uses: actions/checkout@v4
-#               with:
-#                   repository: ${{ env.ET_REPO_PATH }}
-#                   token: ${{ env.ET_REPO_TOKEN }}
-#                   path: ${{ env.ET_WORKSPACE_PATH }}
-#                   ref: 17
-#                   fetch-depth: 1
+    build-odoo-et-image-17:
+        needs: [build-odoo-community-image-17]
+        uses: ./.github/workflows/build-et.yml
+        with:
+            ref: "17"
+            image_tag: "odoo-et:17"
+            et_workspace_path: ${{ github.workspace }}/et-addons
+        secrets: inherit
 
-#             - name: Login to Docker Hub
-#               uses: docker/login-action@v3
-#               with:
-#                   username: ${{ env.DOCKERHUB_USERNAME }}
-#                   password: ${{ env.DOCKERHUB_TOKEN }}
-#             - name: Build & Publish image
-#               run: |
-#                   cd ${{ env.ET_WORKSPACE_PATH }}
-#                   docker build -t ${{ env.DOCKERHUB_USERNAME }}/odoo-et:17 .
-#                   docker push ${{ env.DOCKERHUB_USERNAME }}/odoo-et:17
+    build-odoo-et-image-16:
+        needs: [build-odoo-community-image-16]
+        uses: ./.github/workflows/build-et.yml
+        with:
+            ref: "16"
+            image_tag: "odoo-et:16"
+            et_workspace_path: ${{ github.workspace }}/et-addons
+        secrets: inherit
 
-#     build-odoo-et-image-16:
-#         runs-on: ubuntu-latest
-#         steps:
-#             - name: Checkout
-#               uses: actions/checkout@v4
-
-#             - name: Checkout Enterprise source
-#               uses: actions/checkout@v4
-#               with:
-#                   repository: ${{ env.ET_REPO_PATH }}
-#                   token: ${{ env.ET_REPO_TOKEN }}
-#                   path: ${{ env.ET_WORKSPACE_PATH }}
-#                   ref: 16
-#                   fetch-depth: 1
-
-#             - name: Login to Docker Hub
-#               uses: docker/login-action@v3
-#               with:
-#                   username: ${{ env.DOCKERHUB_USERNAME }}
-#                   password: ${{ env.DOCKERHUB_TOKEN }}
-#             - name: Build & Publish image
-#               run: |
-#                   cd ${{ env.ET_WORKSPACE_PATH }}
-#                   docker build -t ${{ env.DOCKERHUB_USERNAME }}/odoo-et:16 .
-#                   docker push ${{ env.DOCKERHUB_USERNAME }}/odoo-et:16
-
-#     build-odoo-et-image-15:
-#         runs-on: ubuntu-latest
-#         steps:
-#             - name: Checkout
-#               uses: actions/checkout@v4
-
-#             - name: Checkout Enterprise source
-#               uses: actions/checkout@v4
-#               with:
-#                   repository: ${{ env.ET_REPO_PATH }}
-#                   token: ${{ env.ET_REPO_TOKEN }}
-#                   path: ${{ env.ET_WORKSPACE_PATH }}
-#                   ref: 15
-#                   fetch-depth: 1
-
-#             - name: Login to Docker Hub
-#               uses: docker/login-action@v3
-#               with:
-#                   username: ${{ env.DOCKERHUB_USERNAME }}
-#                   password: ${{ env.DOCKERHUB_TOKEN }}
-#             - name: Build & Publish image
-#               run: |
-#                   cd ${{ env.ET_WORKSPACE_PATH }}
-#                   docker build -t ${{ env.DOCKERHUB_USERNAME }}/odoo-et:15 .
-#                   docker push ${{ env.DOCKERHUB_USERNAME }}/odoo-et:15
+    build-odoo-et-image-15:
+        needs: [build-odoo-community-image-15]
+        uses: ./.github/workflows/build-et.yml
+        with:
+            ref: "15"
+            image_tag: "odoo-et:15"
+            et_workspace_path: ${{ github.workspace }}/et-addons
+        secrets: inherit
