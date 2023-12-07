@@ -65,7 +65,7 @@ jobs:
         secrets: inherit
 
     build-odoo-et-image-15:
-        # needs: [build-odoo-community-image-15]
+        needs: [build-odoo-community-image-15]
         uses: ./.github/workflows/build-et.yml
         with:
             ref: "15"
