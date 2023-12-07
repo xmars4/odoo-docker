@@ -16,53 +16,53 @@ env:
     ET_WORKSPACE_PATH: ${{ github.workspace }}/et-source
 
 jobs:
-    # build-odoo-community-image-17:
-    #     permissions:
-    #         contents: write
-    #     uses: ./.github/workflows/build.yml
-    #     with:
-    #         ref: "17"
-    #         image_tag: "odoo:17"
-    #         version_code: "17.0"
-    #     secrets: inherit
+    build-odoo-community-image-17:
+        permissions:
+            contents: write
+        uses: ./.github/workflows/build.yml
+        with:
+            ref: "17"
+            image_tag: "odoo:17"
+            version_code: "17.0"
+        secrets: inherit
 
-    # build-odoo-community-image-16:
-    #     permissions:
-    #         contents: write
-    #     uses: ./.github/workflows/build.yml
-    #     with:
-    #         ref: "16"
-    #         image_tag: "odoo:16"
-    #         version_code: "16.0"
-    #     secrets: inherit
+    build-odoo-community-image-16:
+        permissions:
+            contents: write
+        uses: ./.github/workflows/build.yml
+        with:
+            ref: "16"
+            image_tag: "odoo:16"
+            version_code: "16.0"
+        secrets: inherit
 
-    # build-odoo-community-image-15:
-    #     permissions:
-    #         contents: write
-    #     uses: ./.github/workflows/build.yml
-    #     with:
-    #         ref: "15"
-    #         image_tag: "odoo:15"
-    #         version_code: "15.0"
-    #     secrets: inherit
+    build-odoo-community-image-15:
+        permissions:
+            contents: write
+        uses: ./.github/workflows/build.yml
+        with:
+            ref: "15"
+            image_tag: "odoo:15"
+            version_code: "15.0"
+        secrets: inherit
 
-    # build-odoo-et-image-17:
-    #     needs: [build-odoo-community-image-17]
-    #     uses: ./.github/workflows/build-et.yml
-    #     with:
-    #         ref: "17"
-    #         image_tag: "odoo-et:17"
-    #         et_workspace_path: ${{ github.workspace }}/et-addons
-    #     secrets: inherit
+    build-odoo-et-image-17:
+        needs: [build-odoo-community-image-17]
+        uses: ./.github/workflows/build-et.yml
+        with:
+            ref: "17"
+            image_tag: "odoo-et:17"
+            et_workspace_path: ./et-addons
+        secrets: inherit
 
-    # build-odoo-et-image-16:
-    #     needs: [build-odoo-community-image-16]
-    #     uses: ./.github/workflows/build-et.yml
-    #     with:
-    #         ref: "16"
-    #         image_tag: "odoo-et:16"
-    #         et_workspace_path: ${{ github.workspace }}/et-addons
-    #     secrets: inherit
+    build-odoo-et-image-16:
+        needs: [build-odoo-community-image-16]
+        uses: ./.github/workflows/build-et.yml
+        with:
+            ref: "16"
+            image_tag: "odoo-et:16"
+            et_workspace_path: ./et-addons
+        secrets: inherit
 
     build-odoo-et-image-15:
         # needs: [build-odoo-community-image-15]
