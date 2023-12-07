@@ -1,8 +1,11 @@
 name: build
 
 on:
-    schedule:
-        - cron: "01 23 * * *"
+    push:
+
+# on:
+#     schedule:
+#         - cron: "01 23 * * *"
 
 env:
     DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -11,6 +14,7 @@ env:
     ET_REPO_TOKEN: ${{secrets.ET_REPO_TOKEN}}
 
 jobs:
+    # =============== ODOO COMMUNITY ==================
     build-odoo-community-image-17:
         permissions:
             contents: write
@@ -41,6 +45,17 @@ jobs:
             version_code: "15.0"
         secrets: inherit
 
+    build-odoo-community-image-14:
+        permissions:
+            contents: write
+        uses: ./.github/workflows/build.yml
+        with:
+            ref: "14"
+            image_tag: "odoo:14"
+            version_code: "14.0"
+        secrets: inherit
+
+    # =============== ODOO ENTERPRISE ==================
     build-odoo-et-image-17:
         needs: [build-odoo-community-image-17]
         uses: ./.github/workflows/build-et.yml
@@ -65,5 +80,14 @@ jobs:
         with:
             ref: "15"
             image_tag: "odoo-et:15"
+            et_workspace_path: ./et-addons
+        secrets: inherit
+
+    build-odoo-et-image-14:
+        needs: [build-odoo-community-image-14]
+        uses: ./.github/workflows/build-et.yml
+        with:
+            ref: "14"
+            image_tag: "odoo-et:14"
             et_workspace_path: ./et-addons
         secrets: inherit
