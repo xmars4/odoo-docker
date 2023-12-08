@@ -8,8 +8,6 @@ ENV LANG en_US.UTF-8
 # Retrieve the target architecture to install the correct wkhtmltopdf package
 ARG TARGETARCH
 
-USER root
-
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
@@ -98,6 +96,8 @@ COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
 
 COPY ./requirements.txt /etc/odoo/requirements.txt
 RUN pip3 install -r /etc/odoo/requirements.txt
+
+USER root
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]
