@@ -1,8 +1,9 @@
 name: build
-
 on:
-    schedule:
-        - cron: "01 23 * * *"
+    push:
+# on:
+#     schedule:
+#         - cron: "01 23 * * *"
 
 env:
     DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
