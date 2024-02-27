@@ -3,6 +3,8 @@ name: build
 on:
     schedule:
         - cron: "01 23 * * *"
+    push:
+        branches: [build]
 
 env:
     DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
