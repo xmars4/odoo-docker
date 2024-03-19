@@ -9,84 +9,58 @@ on:
 env:
     DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
     DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-    ET_REPO_PATH: ${{secrets.ET_REPO_PATH}}
-    ET_REPO_TOKEN: ${{secrets.ET_REPO_TOKEN}}
+    ET_REPO_PATH: ${{ secrets.ET_REPO_PATH }}
+    ET_REPO_TOKEN: ${{ secrets.ET_REPO_TOKEN }}
 
 jobs:
     # =============== ODOO COMMUNITY ==================
-    build-odoo-community-image-17:
-        permissions:
-            contents: write
-        uses: ./.github/workflows/build.yml
-        with:
-            ref: "17"
-            image_tag: "odoo:17"
-            version_code: "17.0"
-        secrets: inherit
+    build-community:
+        strategy:
+            matrix:
+                ref: [14, 15, 16, 17]
+                include:
+                    - ref: 14
+                      image_tag: "odoo:14"
+                      version_code: "14.0"
+                    - ref: 15
+                      image_tag: "odoo:15"
+                      version_code: "15.0"
+                    - ref: 16
+                      image_tag: "odoo:16"
+                      version_code: "16.0"
+                    - ref: 17
+                      image_tag: "odoo:17"
+                      version_code: "17.0"
 
-    build-odoo-community-image-16:
         permissions:
             contents: write
         uses: ./.github/workflows/build.yml
         with:
-            ref: "16"
-            image_tag: "odoo:16"
-            version_code: "16.0"
-        secrets: inherit
-
-    build-odoo-community-image-15:
-        permissions:
-            contents: write
-        uses: ./.github/workflows/build.yml
-        with:
-            ref: "15"
-            image_tag: "odoo:15"
-            version_code: "15.0"
-        secrets: inherit
-
-    build-odoo-community-image-14:
-        permissions:
-            contents: write
-        uses: ./.github/workflows/build.yml
-        with:
-            ref: "14"
-            image_tag: "odoo:14"
-            version_code: "14.0"
+            ref: ${{ matrix.ref }}
+            image_tag: ${{ matrix.image_tag }}
+            version_code: ${{ matrix.version_code }}
         secrets: inherit
 
     # =============== ODOO ENTERPRISE ==================
-    build-odoo-et-image-17:
-        needs: [build-odoo-community-image-17]
-        uses: ./.github/workflows/build-et.yml
-        with:
-            ref: "17"
-            image_tag: "odoo-et:17"
-            et_workspace_path: ./et-addons
-        secrets: inherit
+    build-enterprise:
+        needs: [build-community]
+        strategy:
+            matrix:
+                ref: [14, 15, 16, 17]
+                et_workspace_path: ./et-addons
+                include:
+                    - ref: 14
+                      image_tag: odoo-et:14
+                    - ref: 15
+                      image_tag: odoo-et:15
+                    - ref: 16
+                      image_tag: odoo-et:16
+                    - ref: 17
+                      image_tag: odoo-et:17
 
-    build-odoo-et-image-16:
-        needs: [build-odoo-community-image-16]
         uses: ./.github/workflows/build-et.yml
         with:
-            ref: "16"
-            image_tag: "odoo-et:16"
-            et_workspace_path: ./et-addons
-        secrets: inherit
-
-    build-odoo-et-image-15:
-        needs: [build-odoo-community-image-15]
-        uses: ./.github/workflows/build-et.yml
-        with:
-            ref: "15"
-            image_tag: "odoo-et:15"
-            et_workspace_path: ./et-addons
-        secrets: inherit
-
-    build-odoo-et-image-14:
-        needs: [build-odoo-community-image-14]
-        uses: ./.github/workflows/build-et.yml
-        with:
-            ref: "14"
-            image_tag: "odoo-et:14"
-            et_workspace_path: ./et-addons
+            ref: ${{ matrix.ref }}
+            image_tag: ${{ matrix.image_tag }}
+            et_workspace_path: ${{ matrix.et_workspace_path }}
         secrets: inherit
