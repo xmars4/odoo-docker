@@ -47,7 +47,7 @@ jobs:
         strategy:
             matrix:
                 ref: [14, 15, 16, 17]
-                et_workspace_path: ./et-addons
+                et_workspace_path: ["./et-addons"]
                 include:
                     - ref: 14
                       image_tag: odoo-et:14
