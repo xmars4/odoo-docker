@@ -37,8 +37,8 @@ jobs:
         uses: ./.github/workflows/build.yml
         with:
             ref: ${{ matrix.ref }}
-            image_tag: ${{ matrix.image_tag }}
-            version_code: ${{ matrix.version_code }}
+            image_tag: odoo:${{ matrix.ref }}
+            version_code: ${{ matrix.ref }}.0
         secrets: inherit
 
     # =============== ODOO ENTERPRISE ==================
@@ -48,19 +48,10 @@ jobs:
             matrix:
                 ref: [14, 15, 16, 17]
                 et_workspace_path: ["./et-addons"]
-                include:
-                    - ref: 14
-                      image_tag: odoo-et:14
-                    - ref: 15
-                      image_tag: odoo-et:15
-                    - ref: 16
-                      image_tag: odoo-et:16
-                    - ref: 17
-                      image_tag: odoo-et:17
 
         uses: ./.github/workflows/build-et.yml
         with:
             ref: ${{ matrix.ref }}
-            image_tag: ${{ matrix.image_tag }}
+            image_tag: odoo-et:${{ matrix.ref }}
             et_workspace_path: ${{ matrix.et_workspace_path }}
         secrets: inherit
