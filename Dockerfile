@@ -11,8 +11,10 @@ ARG TARGETARCH
 USER root
 
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN for attempt in 1 2 3; do \
+        rm -rf /var/lib/apt/lists/*; \
+        if apt-get -o Acquire::Retries=3 update \
+            && DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Retries=3 install -y --no-install-recommends \
     ca-certificates \
     curl \
     dirmngr \
@@ -36,7 +38,14 @@ RUN apt-get update && \
     python3-watchdog \
     python3-xlrd \
     python3-xlwt \
-    xz-utils && \
+    xz-utils; then \
+            break; \
+        fi; \
+        if [ "$attempt" -eq 3 ]; then \
+            exit 1; \
+        fi; \
+        sleep 5; \
+    done && \
     if [ -z "${TARGETARCH}" ]; then \
     TARGETARCH="$(dpkg --print-architecture)"; \
     fi; \
