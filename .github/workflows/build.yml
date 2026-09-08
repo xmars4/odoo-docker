@@ -70,7 +70,6 @@ jobs:
 
     build-enterprise:
         needs: [update-source-enterprise, build-community]
-        if: always()
         strategy:
             matrix:
                 ref: [15, 16, 17, 18, 19]
