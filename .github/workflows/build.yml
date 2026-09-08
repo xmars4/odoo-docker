@@ -57,7 +57,7 @@ jobs:
     update-source-enterprise:
         strategy:
             matrix:
-                ref: [9, 10, 11, 12, 13, 14, 15, 17, 18, 19]
+                ref: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
                 et_workspace_path: ["./et-addons"]
         permissions:
             contents: write
